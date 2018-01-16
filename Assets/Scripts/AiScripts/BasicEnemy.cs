@@ -89,8 +89,6 @@ public class BasicEnemy : MonoBehaviour
 		}
 		Vector3 moveBy = Vector3.zero;
 
-
-
         if ((transform.position - m_CurrentTarget.transform.position).magnitude > 0.5f)
         {
             int count = m_Path.Count - 1;
