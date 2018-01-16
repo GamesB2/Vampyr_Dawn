@@ -62,6 +62,11 @@ public class BasicEnemy : MonoBehaviour
 		m_PersistantTime = m_TimeMax;
         m_PlayertransformRef = GameManager.GetPlayer().GetComponent<Transform>();
 
+        if (m_PlayertransformRef == null)
+        {
+            m_PlayertransformRef = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+
         // initialises m_CurrentTarget to something non offensive
         ClaimNewWaypoint(WayPointType.PointType.WAYPOINT_TYPE.RETREATING, false);
 
