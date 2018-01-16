@@ -1,0 +1,652 @@
+fileFormatVersion: 2
+guid: 1187d9845d4ce434db2913e4171660b4
+timeCreated: 1508845503
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fifth faction_0
+    21300002: fifth faction_1
+    21300004: fifth faction_2
+    21300006: fifth faction_3
+    21300008: fifth faction_4
+    21300010: fifth faction_5
+    21300012: fifth faction_6
+    21300014: fifth faction_7
+    21300016: fifth faction_8
+    21300018: fifth faction_9
+    21300020: fifth faction_10
+    21300022: fifth faction_11
+    21300024: fifth faction_12
+    21300026: fifth faction_13
+    21300028: fifth faction_14
+    21300030: fifth faction_15
+    21300032: fifth faction_16
+    21300034: fifth faction_17
+    21300036: fifth faction_18
+    21300038: fifth faction_19
+    21300040: fifth faction_20
+    21300042: fifth faction_21
+    21300044: fifth faction_22
+    21300046: fifth faction_23
+    21300048: fifth faction_24
+    21300050: fifth faction_25
+    21300052: fifth faction_26
+    21300054: fifth faction_27
+    21300056: fifth faction_28
+    21300058: fifth faction_29
+    21300060: fifth faction_30
+    21300062: fifth faction_31
+    21300064: fifth faction_32
+    21300066: fifth faction_33
+    21300068: fifth faction_34
+    21300070: fifth faction_35
+    21300072: fifth faction_36
+    21300074: fifth faction_37
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fifth faction_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1748
+        width: 54
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_1
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1748
+        width: 54
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1588
+        width: 53
+        height: 122
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_3
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 1587
+        width: 72
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_4
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 1588
+        width: 53
+        height: 122
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_5
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1587
+        width: 75
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1457
+        width: 105
+        height: 87
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_7
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1431
+        width: 62
+        height: 115
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_8
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 1455
+        width: 110
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_9
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 1430
+        width: 75
+        height: 116
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1291
+        width: 91
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_11
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1148
+        width: 61
+        height: 116
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_12
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 1148
+        width: 98
+        height: 114
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_13
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 988
+        width: 60
+        height: 124
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_14
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 988
+        width: 76
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 988
+        width: 51
+        height: 116
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_16
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 828
+        width: 81
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_17
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 668
+        width: 58
+        height: 123
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_18
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 668
+        width: 103
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_19
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 508
+        width: 55
+        height: 123
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_20
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 508
+        width: 70
+        height: 116
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_21
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 348
+        width: 51
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_22
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 461
+        width: 8
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_23
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 439
+        width: 16
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_24
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 445
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_25
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 348
+        width: 56
+        height: 124
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_26
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 451
+        width: 57
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_27
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 410
+        width: 49
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_28
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 396
+        width: 64
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_29
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 400
+        width: 33
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_30
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 188
+        width: 63
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_31
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 221
+        width: 98
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_32
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 195
+        width: 86
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 151
+        width: 22
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 90
+        height: 140
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_35
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 28
+        width: 58
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_36
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 68
+        width: 115
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fifth faction_37
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 22
+        width: 130
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

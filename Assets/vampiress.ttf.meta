@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7d3eca30b4a53c44caad62f280b5ecc6
+timeCreated: 1509461106
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Vampiress
+  fontNames:
+  - Vampiress
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
