@@ -587,16 +587,16 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Build: 0
+    Build: 1
     Collab: 0
     ErrorHub: 0
     Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 5b832147-c72e-417c-8070-faa936c1778d
-  projectName: VampyrDawn
-  organizationId: james-banton
+  cloudProjectId: 41f63101-891b-45d9-8e27-c27b607b1ef0
+  projectName: VampyrDawn (1)
+  organizationId: daniel-timms
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
