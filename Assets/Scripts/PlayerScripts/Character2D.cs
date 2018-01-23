@@ -60,6 +60,8 @@ public class Character2D : MonoBehaviour
     {
     }
 
+
+
     public void OnTriggerEnter2D(Collider2D col)
     {
         currentCollisions.Add(col.gameObject);
@@ -109,7 +111,7 @@ public class Character2D : MonoBehaviour
         {
             if (m_Button1)
             {
-                m_Anim.SetTrigger("Button1Press");
+                m_Anim.SetBool("PunchCombo1", true);
                 Invoke("FinishAnim", 0.9f);
                 m_Attacking = true;
                 AttackButton1Pressed();
