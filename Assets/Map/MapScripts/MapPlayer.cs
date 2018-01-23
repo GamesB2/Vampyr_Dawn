@@ -21,6 +21,8 @@ public class MapPlayer : MonoBehaviour {
 	private int aspectratiox = 800;
 	private int aspectratioy = 600;
 
+	private static float lastObjectIdentifier = -1;
+
 	// Use this for initialization
 	void Start () {
 		//Ensure player is in front of all other objects by setting last in hierarchy.
@@ -74,11 +76,18 @@ public class MapPlayer : MonoBehaviour {
 		m_RigidBody.velocity = targetVelocity;
 	}
 
-	void OnTriggerEnter2D (Collider2D collider) {
-		GameObject collidedObject = collider.gameObject;
-		//TODO: add bounds so player cannot walk out of map.
-		PointInfo info = collidedObject.GetComponent<PointInfo>();
-		MapData.GetInstance ().SetData (info.region, info.pointOfInterest, info.crowdSize);
-		SceneManager.LoadScene(actionSceneName, loadMode);
+	void OnTriggerStay2D (Collider2D collider) {
+		if (collider.gameObject.transform.localPosition.sqrMagnitude != lastObjectIdentifier) {
+			lastObjectIdentifier = collider.gameObject.transform.localPosition.sqrMagnitude;
+			GameObject collidedObject = collider.gameObject;
+			//TODO: add bounds so player cannot walk out of map.
+			PointInfo info = collidedObject.GetComponent<PointInfo> ();
+			MapData.GetInstance ().SetData (info.region, info.pointOfInterest, info.crowdSize);
+			SceneManager.LoadScene (actionSceneName, loadMode);
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D collider) {
+		lastObjectIdentifier = -1;
 	}
 }

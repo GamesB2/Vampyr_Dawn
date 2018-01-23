@@ -53,6 +53,14 @@ public class MapObject : MonoBehaviour {
 	private RectTransform m_NonStaticRegionRectTransform;
 	private float m_NonStaticTravelTime;
 
+	float differenceXMax, differenceXMin, differenceYMax, differenceYMin;
+
+	void Awake() {
+		differenceXMax = (Screen.width / 2); //prevent dynamic region leaving bounds of the screen.
+		differenceXMin = (differenceXMax *- 1);
+		differenceYMax = (Screen.height / 2);
+		differenceYMin = (differenceYMax *- 1);
+	}
 	void Start () {
 		//Spawn the player in
 		m_Player = Instantiate(PlayerPrefab, transform.parent) as GameObject;
@@ -124,7 +132,7 @@ public class MapObject : MonoBehaviour {
 			{ //non-locked regions should be smaller than the corners?
 				m_newRegionRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, (requiredWidth/2));
 				m_newRegionRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, (requiredHeight/2));
-				m_newRegionRectTransform.localPosition = Vector3.zero;
+				//m_newRegionRectTransform.anchoredPosition = SaveManager.GetInstance ().GetSelectedData ().m_RegionLocation.GetLocation();
 			}
 			else
 			{
@@ -158,18 +166,12 @@ public class MapObject : MonoBehaviour {
 				break;
 			case MapRegions.CENTER:
 			case MapRegions.OTHER:
-				m_newRegionRectTransform.anchorMin = new Vector2 (0.5f, 0.5f);
-				m_newRegionRectTransform.anchorMax = new Vector2 (0.5f, 0.5f);
-				m_newRegionRectTransform.pivot = new Vector2 (0.5f, 0.5f);
+				//m_newRegionRectTransform.anchorMin = new Vector2 (0.5f, 0.5f);
+				//m_newRegionRectTransform.anchorMax = new Vector2 (0.5f, 0.5f);
+				//m_newRegionRectTransform.pivot = new Vector2 (0.5f, 0.5f);
 
 				m_NonStaticRegionRectTransform = m_newRegionRectTransform;
 				break;
-			}
-
-			//Load the previously saved location of the non-static region.
-			if (mRegion.m_Region == MapRegions.CENTER || mRegion.m_Region == MapRegions.OTHER) {
-				Location regionsLocation = SaveManager.GetInstance ().GetSelectedData ().m_RegionLocation;
-				m_NonStaticRegionRectTransform.anchoredPosition = regionsLocation.GetLocation ();
 			}
 
 			Image i = m_NewRegion.AddComponent<Image> ();
@@ -294,9 +296,9 @@ public class MapObject : MonoBehaviour {
 					break;
 				}
 
-				m_PointRectTransform.anchorMin = new Vector2 (0.5f, 0.5f);
-				m_PointRectTransform.anchorMax = new Vector2 (0.5f, 0.5f);
-				m_PointRectTransform.pivot = new Vector2 (0.5f, 0.5f);
+				//m_PointRectTransform.anchorMin = new Vector2 (0.5f, 0.5f);
+				//m_PointRectTransform.anchorMax = new Vector2 (0.5f, 0.5f);
+				//m_PointRectTransform.pivot = new Vector2 (0.5f, 0.5f);
 
 				m_PointRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, m_PointOfInterestIconSizeX);
 				m_PointRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, m_PointOfInterestIconSizeY);
@@ -309,6 +311,12 @@ public class MapObject : MonoBehaviour {
 			m_EnemyManager.SetMapManager (this);
 
 		}
+		//Load the previously saved location of the non-static region.
+		Location regionsLocation = SaveManager.GetInstance ().GetSelectedData ().m_RegionLocation;
+		Vector2 posV2 = new Vector2 (regionsLocation.map_x, regionsLocation.map_y);
+		m_NonStaticRegionRectTransform.localPosition = posV2;
+		m_NonStaticRegion.SetDynamicPosition (posV2);
+
 		m_RegionsContainer.transform.SetAsFirstSibling ();
 	}
 	
@@ -317,12 +325,6 @@ public class MapObject : MonoBehaviour {
 		if (Vector2.Distance (m_NonStaticRegion.GetDynamicPosition (), m_NonStaticRegion.GetDynamicDestination ()) < 100) {
 			//if we have reached the target.
 			//set a new target.
-			float differenceXMax = (Screen.width / 2); //prevent dynamic region leaving bounds of the screen.
-			float differenceXMin = (differenceXMax *- 1);
-			float differenceYMax = (Screen.height / 2);
-			float differenceYMin = (differenceYMax *- 1);
-
-			//Get random position on screen size.
 			m_NonStaticRegion.SetDynamicDestination (new Vector2(
 				Random.Range(differenceXMin + (m_NonStaticRegionRectTransform.sizeDelta.x / 2),
 					differenceXMax - (m_NonStaticRegionRectTransform.sizeDelta.x / 2)),
