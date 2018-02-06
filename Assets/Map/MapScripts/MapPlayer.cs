@@ -44,8 +44,13 @@ public class MapPlayer : MonoBehaviour {
 			transform.localPosition += new Vector3(-150, -150, 0);
 			SaveManager.GetInstance ().GetSelectedData ().m_Time += 1;
 		} else {
+			Vector3 vec3 = SaveManager.GetInstance().GetSelectedData().m_Location.GetLocation();
+
+			float aspectratioWidth = vec3.x / aspectratiox;
+			float aspectratioHeight = vec3.y / aspectratioy;
+			Vector3 realVec = new Vector3 (aspectratioWidth * (float) Screen.width, aspectratioHeight * (float) Screen.height);
 			//load previous position.
-			transform.localPosition += SaveManager.GetInstance().GetSelectedData().m_Location.GetLocation();
+			transform.localPosition += realVec;
 		}		
 
 	}
@@ -64,7 +69,17 @@ public class MapPlayer : MonoBehaviour {
 			case KeyCode.DownArrow:
 			case KeyCode.D: //right
 			case KeyCode.RightArrow:
-				SaveManager.GetInstance ().GetSelectedData ().m_Location.SetLocation (transform.localPosition); //save location when player moves.
+				Vector3 vec3 = transform.localPosition;
+
+				float basex = vec3.x / (float) Screen.width;
+				float basey = vec3.y / (float) Screen.height;
+
+				float realx = basex * aspectratiox;
+				float realy = basey * aspectratioy;
+
+				Vector3 realVec = new Vector3 (realx, realy, 0);
+
+				SaveManager.GetInstance ().GetSelectedData ().m_Location.SetLocation (realVec); //save location when player moves.
 				break;
 			}
 		}

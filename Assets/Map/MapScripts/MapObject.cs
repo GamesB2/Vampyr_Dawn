@@ -20,7 +20,10 @@ public class MapObject : MonoBehaviour {
 		PORT, TRAIN_STATION, PARK, GRAVEYARD_CHURCH, NIGHTCLUB, CLIFF_EDGE
 	};
 
+
 	public Font m_Font;
+	public Font m_EnemiesLabelFont;
+
 
 	public GameObject BattlesCompletedLabel;
 	public GameObject TimeLabel;
