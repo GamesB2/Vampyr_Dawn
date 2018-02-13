@@ -137,10 +137,15 @@ public class BasicEnemy : MonoBehaviour
 
                     foreach (Transform child in enemyHolder.transform)
                     {
-                        if (child.gameObject.GetComponent<BasicEnemy>().m_Behaviour == BehaviourType.ENEMY_BEHAVIOUR.ATTACK)
+
+                        if (child.gameObject.GetComponent<BasicEnemy>() != null)
                         {
-                            anEnemyIsAttacking = true;
+                            if (child.gameObject.GetComponent<BasicEnemy>().m_Behaviour == BehaviourType.ENEMY_BEHAVIOUR.ATTACK)
+                            {
+                                anEnemyIsAttacking = true;
+                            }
                         }
+
                     }
 
                     if (anEnemyIsAttacking == false)
@@ -341,7 +346,7 @@ public class BasicEnemy : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             PlayerHealthScript PlayerHealth = hit.collider.gameObject.GetComponent<PlayerHealthScript>();
             if (PlayerHealth != null)
             {

@@ -91,9 +91,22 @@ public class BossEnemy : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK) superAttackTimer += 1.0f * Time.deltaTime;
+        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK)
+        {
+            superAttackTimer += 1.0f * Time.deltaTime;
+        }
 
-        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.RETREAT) throwObjectTimer += 1.0f * Time.deltaTime;
+        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.RETREAT)
+        {
+            throwObjectTimer += 1.0f * Time.deltaTime;
+
+            if (throwObjectReady)
+            {
+                throwObjectReady = false;
+                throwObjectTimer = 0.0f;
+                Debug.Log("boss is throwing object");
+            }
+        }
 
         if (superAttackTimer > superAttackDelay)
         {
@@ -153,7 +166,7 @@ public class BossEnemy : MonoBehaviour
 
                 //needs to be able to still go to attack state if no other enemys are  attacking.
                 //gets a reference to each enemy in scene, check their state and if no one is in the attacking state move to attacking phase.
-                GameObject enemyHolder = GameObject.Find("Enemies");
+                /*GameObject enemyHolder = GameObject.Find("Enemies");
 
                 if (enemyHolder != null)
                 {
@@ -172,7 +185,7 @@ public class BossEnemy : MonoBehaviour
                         m_Behaviour = BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK;
                         Debug.Log("no one was attacking, so i've been assigned to attack.");
                     }
-                }
+                }*/
 
 			}
         }
@@ -207,13 +220,6 @@ public class BossEnemy : MonoBehaviour
 				if (m_CurrentTarget == null)
 				{
 					ClaimNewWaypoint(WayPointType.PointType.WAYPOINT_TYPE.RETREATING, false);
-
-                    if (throwObjectReady)
-                    {
-                        throwObjectReady = false;
-                        throwObjectTimer = 0.0f;
-                        Debug.Log("boss is throwing object");
-                    }
 				}
 			}
 		}
@@ -372,7 +378,7 @@ public class BossEnemy : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             PlayerHealthScript PlayerHealth = hit.collider.gameObject.GetComponent<PlayerHealthScript>();
             if (PlayerHealth != null)
             {
