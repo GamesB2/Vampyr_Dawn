@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager m_GameManager = null;
     private static GameObject m_PlayerReference = null;
 	private static List<GameObject> m_EnemyAiList = null;
+
+
 
     public void Awake()
     {
@@ -29,6 +32,85 @@ public class GameManager : MonoBehaviour
     {
         return m_PlayerReference;
     }
+
+	public static void Resume()
+	{
+		
+		if (Time.timeScale == 0) 
+		{
+			Time.timeScale = 1;
+		} else 
+		{
+			Time.timeScale = 0;
+		}
+
+	}
+	public static void Pause()
+	{
+
+		if (Time.timeScale == 1) 
+		{
+			Time.timeScale = 0;
+		} else 
+		{
+			Time.timeScale = 1;
+		}
+
+	}
+
+	public void NewGame() {
+		SaveManager _instance = SaveManager.GetInstance ();
+
+		SaveData[] savedDatas = _instance.GetData ();
+		if (savedDatas.Length >= 0)
+			_instance.ClearData ();
+
+		SaveData newData = new SaveData ();
+		newData.m_CharacterName = "Bob";
+		_instance.SetSelectedData (newData);
+
+
+		SceneManager.LoadScene (2);
+
+	}
+
+	public static void Save()
+	{
+		SaveManager.GetInstance ().SaveSelectedData();
+	}
+
+	public void LoadGame()
+	{
+		SaveManager _instance = SaveManager.GetInstance ();
+		SaveData[] savedDatas = _instance.GetData ();
+		if (savedDatas.Length > 0) {
+			//Save data exists
+			SaveData data = savedDatas [0];
+			_instance.SetSelectedData (data);
+
+			SceneManager.LoadScene (2, LoadSceneMode.Single);
+		} else 
+		{
+			NewGame ();
+		}
+
+	}
+
+	public void LoadMainMenu()
+	{
+		SceneManager.LoadScene (0);
+	}
+	public void LoadMapScene()
+	{
+		SceneManager.LoadScene(2);
+	}
+
+	public void LeaveActionScene() 
+	{
+		SaveManager.GetInstance ().GetSelectedData ().IncreaseFightsCompleted ();
+		SceneManager.LoadScene ("MapScene", LoadSceneMode.Single);
+	}
+
 
 	void Update()
 	{

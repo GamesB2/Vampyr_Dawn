@@ -9,17 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1804446105328482}
+  m_RootGameObject: {fileID: 1131884282091278}
   m_IsPrefabParent: 1
---- !u!1 &1804446105328482
+--- !u!1 &1131884282091278
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4842058757857116}
-  - component: {fileID: 114860044512812842}
+  - component: {fileID: 4933289635697304}
+  - component: {fileID: 114676169336009292}
+  - component: {fileID: 95618839273558902}
   m_Layer: 0
   m_Name: EscMenu
   m_TagString: Untagged
@@ -27,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4842058757857116
+--- !u!4 &4933289635697304
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804446105328482}
+  m_GameObject: {fileID: 1131884282091278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000007987022, y: -0.33377135, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,15 +41,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114860044512812842
+--- !u!95 &95618839273558902
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131884282091278}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9675befda5ab0043814b816e4e01703, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114676169336009292
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804446105328482}
+  m_GameObject: {fileID: 1131884282091278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de0d1807b030286428b2c41b5c63817a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
+  animR: {fileID: 0}
+  animS: {fileID: 0}
+  animL: {fileID: 0}
+  animO: {fileID: 0}
+  animQ: {fileID: 0}
+  animM: {fileID: 0}

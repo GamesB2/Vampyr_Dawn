@@ -11,6 +11,7 @@ public class EscMenu : MonoBehaviour
 	public Animator animL; 
 	public Animator animO; 
 	public Animator animQ; 
+	public Animator animM;
 	bool isPaused;
 
 
@@ -21,63 +22,70 @@ public class EscMenu : MonoBehaviour
 		animL = GetComponent<Animator> ();
 		animO = GetComponent<Animator> ();
 		animQ = GetComponent<Animator> ();
+		animM = GetComponent<Animator> ();
 		isPaused = false;
 	}
 
 	void Update () 
 	{
-
 		if(Input.GetKeyUp(KeyCode.Escape))
 		{
-			if (!isPaused)
+			if (!isPaused) 
 			{
-				StartCoroutine (waitAndSetScale());
-				//isPaused = true;
+				isPaused = true;
+				Pause ();
 			}
-			else
+
+			else if (isPaused == true)
 			{
-				StartCoroutine (resumeGameScale());
-				//isPaused = false;
+				isPaused = false;
+				Resume ();
 			}
 		}
+	}
 
+	public void Pause()
+	{
+		StartCoroutine (waitAndSetScale ());
+
+	}
+
+	public void Resume()
+	{
+		GameManager.Resume ();
+		StartCoroutine (resumeGameScale());
 	}
 
 	IEnumerator waitAndSetScale() 
 	{
 		pauseMenu.SetActive (true);
-		animR.SetBool ("Normal", true);	
-		animS.SetBool("Normal", true);
+		animR.SetTrigger ("Normal");	
+		animS.SetBool ("Normal", true);
 		animL.SetBool ("Normal", true);
 		animO.SetBool ("Normal", true);
 		animQ.SetBool ("Normal", true);
+		animM.SetTrigger ("MainMenu");	
 
-		while(animQ.GetComponent<Animator> ().isInitialized)
-			yield return new WaitForSeconds(1);
-		
-		pauseMenu.SetActive (true);
-		//Time.timeScale = 0;
+			yield return new WaitForSeconds (2);
+
+		GameManager.Pause ();
 	}
 		 
 	IEnumerator resumeGameScale()
 	{
-		Time.timeScale = 1;
-		Debug.Log (animR.GetInteger("speed"));
-
-		animR.SetBool ("Normal", false);
-		animS.SetBool ("Normal 0", true);
+		animR.SetTrigger ("Return");
+		animS.SetBool ("Return", true);
 		animL.SetBool ("Normal 0", true);
 		animO.SetBool ("Normal 0", true);
 		animQ.SetBool ("Normal 0", true);
+		animM.SetTrigger ("MainMenu");	
 
-		while(!animQ.GetComponent<Animator> ().isInitialized)
-			yield return new WaitForSeconds(1);
-		
+			yield return new WaitForSeconds(0f);
 		pauseMenu.SetActive (false);
 
 	}
-//
-//
+
+
 
 }
 
