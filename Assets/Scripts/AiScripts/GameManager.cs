@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class GameManager : MonoBehaviour
     private static GameObject m_PlayerReference = null;
 	private static List<GameObject> m_EnemyAiList = null;
 
+	public Color darkest, brightest;
+	public Slider slider;
+
 
 
     public void Awake()
     {
+		
         m_PlayerReference = GameObject.Find("Player");
 		m_EnemyAiList = new List<GameObject> ();
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("EnemyAi");
@@ -83,7 +88,8 @@ public class GameManager : MonoBehaviour
 	{
 		SaveManager _instance = SaveManager.GetInstance ();
 		SaveData[] savedDatas = _instance.GetData ();
-		if (savedDatas.Length > 0) {
+		if (savedDatas.Length > 0) 
+		{
 			//Save data exists
 			SaveData data = savedDatas [0];
 			_instance.SetSelectedData (data);
@@ -109,6 +115,14 @@ public class GameManager : MonoBehaviour
 	{
 		SaveManager.GetInstance ().GetSelectedData ().IncreaseFightsCompleted ();
 		SceneManager.LoadScene ("MapScene", LoadSceneMode.Single);
+	}
+	public void ApplicationExit()
+	{
+		Application.Quit();
+	}
+	public void BrightnessSettings()
+	{
+		RenderSettings.ambientLight = Color.Lerp(darkest, brightest, slider.value);
 	}
 
 
