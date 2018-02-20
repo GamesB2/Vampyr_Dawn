@@ -15,7 +15,7 @@ public class MapPlayer : MonoBehaviour {
 	private float playerSpeedX = 20f;
 	private float playerSpeedY = 20f;
 
-	private string actionSceneName = "Wills_Scene";
+	private string actionSceneName = "JimmyfightTestScene";
 	private LoadSceneMode loadMode = LoadSceneMode.Single;
 
 	private int aspectratiox = 800;
