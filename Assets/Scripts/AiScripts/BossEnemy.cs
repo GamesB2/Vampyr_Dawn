@@ -42,6 +42,8 @@ public class BossEnemy : MonoBehaviour
 	Vector3 Dest;
 
     public bool m_attacking;
+    public float attackDelay = 1.0f; //delay in seconds between attacks.
+    private float attackTimer = 0.0f;
 
     public bool superAttackReady = false;
     float superAttackTimer = 0.0f;
@@ -51,8 +53,10 @@ public class BossEnemy : MonoBehaviour
     float throwObjectTimer = 0.0f;
     public float throwObjectDelay = 10.0f;
 
+    
 
-	public Animator anim;
+
+    public Animator anim;
     // Use this for initialization
 	void Awake(){
 		anim = GetComponentInParent <Animator> ();
@@ -91,12 +95,13 @@ public class BossEnemy : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK)
+        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK && !superAttackReady)
         {
             superAttackTimer += 1.0f * Time.deltaTime;
+            //Debug.Log("super attack timer: " + superAttackTimer);
         }
 
-        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.RETREAT)
+        if (m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.RETREAT && !throwObjectReady)
         {
             throwObjectTimer += 1.0f * Time.deltaTime;
 
@@ -108,13 +113,25 @@ public class BossEnemy : MonoBehaviour
             }
         }
 
+        //reset attacking timer so the enemy wont attack constatly.
+        if (m_attacking == true)
+        {
+            attackTimer += 1.0f * Time.deltaTime;
+        }
+
+        if (m_attacking && attackTimer > attackDelay)
+        {
+            attackTimer = 0.0f;
+        }
+
         if (superAttackTimer > superAttackDelay)
         {
             superAttackReady = true;
             superAttackTimer = 0.0f;
+            //Debug.Log("super attack timer: " + superAttackTimer);
         }
 
-        if (superAttackTimer > superAttackDelay)
+        if (throwObjectTimer > throwObjectDelay)
         {
             throwObjectReady = true;
             throwObjectTimer = 0.0f;
@@ -163,29 +180,6 @@ public class BossEnemy : MonoBehaviour
 					m_Behaviour = BossBehaviourType.ENEMY_BEHAVIOUR.READY_TO_FIGHT;
 					m_PersistantTime = m_TimeMax * 0.2f;
 				}
-
-                //needs to be able to still go to attack state if no other enemys are  attacking.
-                //gets a reference to each enemy in scene, check their state and if no one is in the attacking state move to attacking phase.
-                /*GameObject enemyHolder = GameObject.Find("Enemies");
-
-                if (enemyHolder != null)
-                {
-                    bool anEnemyIsAttacking = false;
-
-                    foreach (Transform child in enemyHolder.transform)
-                    {
-                        if (child.gameObject.GetComponent<BossEnemy>().m_Behaviour == BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK)
-                        {
-                            anEnemyIsAttacking = true;
-                        }
-                    }
-
-                    if (anEnemyIsAttacking == false)
-                    {
-                        m_Behaviour = BossBehaviourType.ENEMY_BEHAVIOUR.ATTACK;
-                        Debug.Log("no one was attacking, so i've been assigned to attack.");
-                    }
-                }*/
 
 			}
         }
@@ -249,7 +243,7 @@ public class BossEnemy : MonoBehaviour
                 {
                     Attack();
                     m_attacking = true;
-                    Invoke("ResetAttack", 0.8f);
+                    //Invoke("ResetAttack", 0.8f);
                 }
 				if (m_CurrentTarget == null)
 				{
@@ -385,6 +379,8 @@ public class BossEnemy : MonoBehaviour
                 if (superAttackReady)
                 {
                     PlayerHealth.TakeDamage(30);
+                    Debug.Log("Super Attack");
+                    superAttackReady = false;
                 }
                 else
                 {
@@ -392,10 +388,5 @@ public class BossEnemy : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void ResetAttack()
-    {
-        m_attacking = false;
     }
 }

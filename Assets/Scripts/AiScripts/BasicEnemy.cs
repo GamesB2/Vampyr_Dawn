@@ -42,6 +42,8 @@ public class BasicEnemy : MonoBehaviour
 	Vector3 Dest;
 
     public bool m_attacking;
+    public float attackDelay = 1.0f; //delay in seconds between attacks.
+    private float attackTimer = 0.0f;
 
 
 	public Animator anim;
@@ -106,6 +108,18 @@ public class BasicEnemy : MonoBehaviour
         }
 
         transform.position += moveBy * Time.deltaTime;
+
+
+        //reset attacking timer so the enemy wont attack constatly.
+        if (m_attacking == true)
+        {
+            attackTimer += 1.0f * Time.deltaTime;
+        }
+
+        if (m_attacking && attackTimer > attackDelay)
+        {
+            attackTimer = 0.0f;
+        }
     }
 
     private void UpdateState()
@@ -217,7 +231,8 @@ public class BasicEnemy : MonoBehaviour
                 {
                     Attack();
                     m_attacking = true;
-                    Invoke("ResetAttack", 0.8f);
+                    //Invoke("ResetAttack", 0.8f);
+                    anim.SetTrigger("walk");
                 }
 				if (m_CurrentTarget == null)
 				{
@@ -346,8 +361,11 @@ public class BasicEnemy : MonoBehaviour
 
         if (hit.collider != null)
         {
-            //Debug.Log("hit");
+            Debug.Log("hit");
             PlayerHealthScript PlayerHealth = hit.collider.gameObject.GetComponent<PlayerHealthScript>();
+
+            Debug.Log(PlayerHealth != null);
+
             if (PlayerHealth != null)
             {
                 PlayerHealth.TakeDamage(10);
@@ -355,8 +373,4 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void ResetAttack()
-    {
-        m_attacking = false;
-    }
 }
