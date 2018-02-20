@@ -20,7 +20,7 @@ public class Character2D : MonoBehaviour
 	private Transform groundCheck;
 	private float hitDistance;
 	public bool onGround = false;
-	public bool         m_FacingRight = true;
+	public bool facingRight = true;
 	private bool jump = false;
 	private bool isDead = false;
 	public float minHeight, maxHeight;
@@ -28,21 +28,10 @@ public class Character2D : MonoBehaviour
 
     private AttackTrigger attacktrigger;
 
-    bool feeding;
-    int feedingTime;
-    GameObject feedingenemy;
 
     // More states to come
 
     public int health;
-
-    List<GameObject> currentCollisions = new List<GameObject>();
-
-    public GameObject m_BoundingBox;
-
-	public GameObject Assure;
-
-
     
 	void Start()
 	{
@@ -57,10 +46,7 @@ public class Character2D : MonoBehaviour
        
         m_InputManager = GetComponent<InputManager>();
         attacktrigger =  GetComponentInChildren<AttackTrigger>();
-		m_FacingRight = false;
-
-        feedingTime = 0;
-        feeding = false;
+		facingRight = false;
     }
 
     private void FixedUpdate()
@@ -81,11 +67,11 @@ public class Character2D : MonoBehaviour
 				m_Anim.SetFloat ("Speed", Mathf.Abs (rb.velocity.magnitude));
 			}
 
-			if (moveHorizontal < 0 && !m_FacingRight) 
+			if (moveHorizontal < 0 && !facingRight) 
 			{
 				FaceRight ();
 			} 
-			else if (moveHorizontal > 0 && m_FacingRight) 
+			else if (moveHorizontal > 0 && facingRight) 
 			{
 				FaceLeft ();
 			}
@@ -108,31 +94,16 @@ public class Character2D : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        currentCollisions.Add(col.gameObject);
+        //currentCollisions.Add(col.gameObject);
         Debug.Log("enter");
     }
 
     public void OnTriggerExit2D(Collider2D col)
     {
-        currentCollisions.Remove(col.gameObject);
+        //currentCollisions.Remove(col.gameObject);
         Debug.Log("Exit");
     }
 
-    void Feeding()
-    {
-        if (feedingTime != 4)
-        {
-            GetComponent<PlayerHealthScript>().AddHealth(5);
-            Invoke("Feeding", 0.5f);
-            feedingTime++;
-        }
-        else
-        {
-            feedingTime = 0;
-            feeding = false;
-            m_Anim.SetBool("Crouching", false);
-        }
-    }
 
     public void Update()
 	{
@@ -168,7 +139,7 @@ public class Character2D : MonoBehaviour
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
-        m_FacingRight = !m_FacingRight;
+		facingRight = !facingRight;
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
