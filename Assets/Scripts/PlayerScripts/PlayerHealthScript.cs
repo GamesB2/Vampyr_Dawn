@@ -31,7 +31,6 @@ public class PlayerHealthScript : MonoBehaviour
 	void Start()
 	{
 		anim = GetComponentInParent <Animator> ();
-		healthScale = healthBar.transform.localScale.x;
 	}
 
 	public void AddHealth(int HealthPoints)

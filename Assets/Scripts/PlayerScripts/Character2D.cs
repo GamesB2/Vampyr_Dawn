@@ -108,7 +108,7 @@ public class Character2D : MonoBehaviour
     public void Update()
 	{
 
-		onGround = Physics.Raycast (groundCheck.position, Vector3.down, 0.15f,  groundLayer);
+		onGround = Physics.Raycast (groundCheck.position, Vector3.down, 0.5f,  groundLayer);
 		Debug.DrawRay(groundCheck.position, Vector3.down);
 
 		m_Anim.SetBool ("OnGround", onGround);
