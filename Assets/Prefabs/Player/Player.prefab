@@ -131,8 +131,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266466494251044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.304, y: -0.991, z: 0}
-  m_LocalScale: {x: 1.25, y: 1, z: 1.097936}
+  m_LocalPosition: {x: -0.304, y: -1.14, z: 0}
+  m_LocalScale: {x: 1.25, y: 1, z: 1}
   m_Children:
   - {fileID: 4016211978995816}
   - {fileID: 4632566442774870}
@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1444436004094368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.261, y: 0.055, z: 0.006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4442084450372044}
@@ -206,7 +206,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: db1a2bb91c589794188d73306b17aaad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -269,16 +269,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Anim: {fileID: 95807587761637338}
   maxSpeed: 2
-  jumpForce: 250
+  jumpForce: 200
   currentSpeed: 2
-  onGround: 1
+  onGround: 0
   facingRight: 0
   minHeight: -6
   maxHeight: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  health: 0
+  health: 100
 --- !u!114 &114745364368564432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,12 +287,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491138761900872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90cff923b35f12b4db5de9738d5d96fa, type: 3}
+  m_Script: {fileID: 11500000, guid: cdd14348e08170b46ab58ecf558574a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 0}
-  explosionPrefab: {fileID: 1740350253518612, guid: e3e312dcb76fb3749bb9fd575eec8638,
-    type: 2}
+  damage: 0
 --- !u!136 &136691036647133412
 CapsuleCollider:
   m_ObjectHideFlags: 1

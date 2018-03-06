@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329907479089572}
   m_Layer: 0
-  m_Name: GroundCheck
+  m_Name: GroundCheckEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1667151382518614}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.7571826, y: 0.89934886, z: 0.006587616}
+  m_LocalPosition: {x: -0.005, y: 0.012, z: 0.006587616}
   m_LocalScale: {x: 1.25, y: 1, z: 1.09794}
   m_Children: []
   m_Father: {fileID: 4455238949650446}
@@ -134,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647533937006882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.7349324, y: -1.8353488, z: 0}
+  m_LocalPosition: {x: -6.7349324, y: -1.8353488, z: 1.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4937105969700578}
@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224827341729980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.3746824, y: 1.6723489, z: -0.03293808}
+  m_LocalPosition: {x: 0.5, y: 0.8, z: 0.5}
   m_LocalScale: {x: 0.625, y: 0.5, z: 1.09794}
   m_Children: []
   m_Father: {fileID: 4455238949650446}
@@ -274,12 +274,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1224827341729980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90cff923b35f12b4db5de9738d5d96fa, type: 3}
+  m_Script: {fileID: 11500000, guid: cdd14348e08170b46ab58ecf558574a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 0}
-  explosionPrefab: {fileID: 1740350253518612, guid: e3e312dcb76fb3749bb9fd575eec8638,
-    type: 2}
+  damage: 0
 --- !u!114 &114498976853428944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,6 +338,9 @@ MonoBehaviour:
     m_Bits: 256
   minHeight: -6
   maxHeight: 5
+  damagetime: 0.5
+  maxHealth: 0
+  attackRate: 1
 --- !u!136 &136174362942722422
 CapsuleCollider:
   m_ObjectHideFlags: 1

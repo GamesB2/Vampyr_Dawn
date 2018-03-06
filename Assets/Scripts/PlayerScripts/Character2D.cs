@@ -26,7 +26,6 @@ public class Character2D : MonoBehaviour
 	public float minHeight, maxHeight;
 	public LayerMask groundLayer;
 
-    private AttackTrigger attacktrigger;
 
 
     // More states to come
@@ -45,7 +44,6 @@ public class Character2D : MonoBehaviour
     {
        
         m_InputManager = GetComponent<InputManager>();
-        attacktrigger =  GetComponentInChildren<AttackTrigger>();
 		facingRight = false;
     }
 
@@ -175,14 +173,4 @@ public class Character2D : MonoBehaviour
 	{
 		currentSpeed = maxSpeed;
 	}
-
-    public void AttackButton1Pressed()
-    {
-        attacktrigger.Attack(20);
-    }
-
-    public void AttackButton2Pressed()
-    {
-        attacktrigger.Attack(20);
-    }
 }
