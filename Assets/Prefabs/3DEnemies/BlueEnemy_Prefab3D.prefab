@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114043367284219134}
   - component: {fileID: 54317059973218210}
   - component: {fileID: 136965972429201302}
+  - component: {fileID: 114705519996561054}
   m_Layer: 0
   m_Name: BlueEnemy_Prefab3D
   m_TagString: EnemyAi
@@ -43,6 +44,21 @@ GameObject:
   - component: {fileID: 212386068723615526}
   m_Layer: 0
   m_Name: EnemyHealthBarBack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1221587624370864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4259615031994384}
+  m_Layer: 0
+  m_Name: GroundCheckEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,6 +108,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4737324404513290}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4259615031994384
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1221587624370864}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07, y: 0.12, z: 0.098}
+  m_LocalScale: {x: 1.25, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4737324404513290}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4477965281505958
@@ -115,10 +144,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057296219345744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.7349324, y: -1, z: 0}
+  m_LocalPosition: {x: -6.7349324, y: -1, z: 2.356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4477965281505958}
+  - {fileID: 4259615031994384}
   - {fileID: 4164411168387256}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -149,7 +179,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65886773155670576
 BoxCollider:
@@ -175,7 +205,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1912acf85bb210d4c9b568036575e815, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -198,7 +228,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057296219345744}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a599cdfdab0a8bb41918cca3b8943f09, type: 3}
   m_Name: 
@@ -208,6 +238,26 @@ MonoBehaviour:
   anim: {fileID: 95540470124845088}
   isDead: 0
   healthBar: {fileID: 1240943432605466}
+--- !u!114 &114705519996561054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057296219345744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2af80e5a496d8646805a192097bbf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  minHeight: -6
+  maxHeight: 5
+  damagetime: 0.5
+  maxHealth: 100
+  attackRate: 1
 --- !u!114 &114872759920062944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,10 +282,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.33499998
+  m_Radius: 0.22341728
   m_Height: 1.22
   m_Direction: 1
-  m_Center: {x: 0, y: 0.61, z: 0}
+  m_Center: {x: 0.0041327477, y: 0.61, z: 0}
 --- !u!212 &212386068723615526
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -313,7 +363,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300004, guid: 29429e55af12ded4ba74ca751d1c2274, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

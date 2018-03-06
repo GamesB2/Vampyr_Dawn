@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
 	public LayerMask groundLayer;
 	public float minHeight, maxHeight;
 	public float damagetime = 0.5f;
-	public int maxHealth;
+	public int maxHealth = 100;
 	public float attackRate = 1f;
 
 	private int currentHealth;
@@ -37,22 +37,28 @@ public class Enemy : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		onGround = Physics.Raycast (groundCheck.position, Vector3.down, 0.15f,  groundLayer);
+		Debug.DrawRay(groundCheck.position, Vector3.down);
+
 		anim.SetBool ("Grounded", onGround);
 		anim.SetBool("Dead", isDead);
 
 
 		facingRight = (target.position.x < transform.position.x) ? false : true;
-		if (facingRight) {
+		if (facingRight) 
+		{
 			transform.eulerAngles = new Vector3 (0, 0, 0);
 		} else {
 			transform.eulerAngles = new Vector3 (0, 180, 0);
 		}
 
-		if (damaged && !isDead) {
+		if (damaged && !isDead) 
+		{
 			damageTimer += Time.deltaTime;
-			if (damageTimer > -damagetime) {
+			if (damageTimer > -damagetime) 
+			{
 				damaged = false;
 				damageTimer = 0;
 			}
@@ -87,7 +93,7 @@ public class Enemy : MonoBehaviour {
 				rb.position.y,
 				Mathf.Clamp (rb.position.z, minHeight + 1, maxHeight - 1));
 
-			if (Mathf.Abs (targetDistance.x) < 1.5f && Mathf.Abs (targetDistance.z) < 1.5f && Time.time > nextAttack) 
+			if (Mathf.Abs (targetDistance.x) < 1.0f && Mathf.Abs (targetDistance.z) < 1.0f && Time.time > nextAttack) 
 			{
 				anim.SetTrigger ("Attack");
 				currentSpeed = 0;
