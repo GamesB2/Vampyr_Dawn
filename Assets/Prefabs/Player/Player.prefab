@@ -25,8 +25,9 @@ GameObject:
   - component: {fileID: 95807587761637338}
   - component: {fileID: 114482258111527384}
   - component: {fileID: 114009615937412818}
-  - component: {fileID: 54135224070567152}
   - component: {fileID: 136691036647133412}
+  - component: {fileID: 54802283528463850}
+  - component: {fileID: 136506491922895436}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,7 +108,7 @@ Transform:
   m_Father: {fileID: 4442084450372044}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54135224070567152
+--- !u!54 &54802283528463850
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -235,6 +236,19 @@ MonoBehaviour:
   trigger: {fileID: 0}
   explosionPrefab: {fileID: 1740350253518612, guid: e3e312dcb76fb3749bb9fd575eec8638,
     type: 2}
+--- !u!136 &136506491922895436
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1266466494251044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.24000001
+  m_Height: 1.1999998
+  m_Direction: 1
+  m_Center: {x: 0.24000001, y: 0.5999994, z: 0}
 --- !u!136 &136691036647133412
 CapsuleCollider:
   m_ObjectHideFlags: 1
