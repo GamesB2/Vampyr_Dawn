@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour {
 		{
 			damaged = true;
 			currentHealth -= damage;
-			anim.SetTrigger ("HitDamage");
+			anim.SetTrigger ("Damage");
 			if (currentHealth <= 0) 
 			{
 				isDead = true;

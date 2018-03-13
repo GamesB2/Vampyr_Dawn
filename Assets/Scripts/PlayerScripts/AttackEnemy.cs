@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class AttackEnemy : MonoBehaviour
 {
 
 	public int damage;
@@ -19,9 +19,9 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-		Enemy enemy = other.GetComponent<Enemy> ();
-		if (enemy != null) {
-			enemy.TookDamage (damage);
+		Character2D player = other.GetComponent<Character2D> ();
+		if (player != null) {
+			player.TookDamage (damage);
 			Debug.Log ("Hit");
 		}
     }

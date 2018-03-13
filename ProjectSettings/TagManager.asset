@@ -18,10 +18,10 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - PlayerHit
+  - EnemyHit
   - 
   - 
   - 

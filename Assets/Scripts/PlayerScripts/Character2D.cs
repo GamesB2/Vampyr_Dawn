@@ -5,11 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(InputManager))]
 public class Character2D : MonoBehaviour
 {
-    private InputManager m_InputManager;
 
     public Animator      m_Anim;                                                    
 
-    private bool         m_Attacking = false;
     private enum States { standing, crouching, grabbing, attacking };
 
 	public float maxSpeed = 2;
@@ -25,12 +23,14 @@ public class Character2D : MonoBehaviour
 	private bool isDead = false;
 	public float minHeight, maxHeight;
 	public LayerMask groundLayer;
+	public bool damaged;
+	public float damagetime = 1.0f;
 
 
 
-    // More states to come
-
-    public int health;
+	private float damageTimer;
+	public int maxHealth;
+    int currentHealth;
     
 	void Start()
 	{
@@ -38,12 +38,11 @@ public class Character2D : MonoBehaviour
 		m_Anim = GetComponent<Animator>();
 		groundCheck = gameObject.transform.Find ("GroundCheck");
 		currentSpeed = maxSpeed;
+		currentHealth = maxHealth;
 	}
 
     private void Awake()
     {
-       
-        m_InputManager = GetComponent<InputManager>();
 		facingRight = false;
     }
 
@@ -57,8 +56,10 @@ public class Character2D : MonoBehaviour
 			if (!onGround) {
 				moveVertical = 0;
 			}
-
-			rb.velocity = new Vector3 (moveHorizontal * currentSpeed, rb.velocity.y,  moveVertical * currentSpeed);
+				
+			if (!damaged) {
+				rb.velocity = new Vector3 (moveHorizontal * currentSpeed, rb.velocity.y, moveVertical * currentSpeed);
+			}
 
 			if (onGround) 
 			{
@@ -121,13 +122,17 @@ public class Character2D : MonoBehaviour
 		{
 			m_Anim.SetTrigger ("Attack");
 		}
-	}
-		
 
-    public void FinishAnim()
-    {
-        m_Attacking = false;
-    }
+		if (damaged && !isDead) 
+		{
+			damageTimer += Time.deltaTime;
+			if (damageTimer > damagetime) 
+			{
+				damaged = false;
+				damageTimer = 0;
+			}
+		}
+	}
 
     public void FinishDamageAnim()
     {
@@ -172,5 +177,20 @@ public class Character2D : MonoBehaviour
 	void ResetSpeed()
 	{
 		currentSpeed = maxSpeed;
+	}
+
+	public void TookDamage(int damage)
+	{
+		if(!isDead)
+		{
+			damaged = true;
+			currentHealth -= damage;
+			m_Anim.SetTrigger ("HitDamage");
+			if (currentHealth <= 0) 
+			{
+				isDead = true;
+				rb.AddRelativeForce (new Vector3 (3, 5, 0), ForceMode.Impulse);
+			}
+		}
 	}
 }
