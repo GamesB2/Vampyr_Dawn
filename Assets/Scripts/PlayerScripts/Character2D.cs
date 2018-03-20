@@ -75,7 +75,7 @@ public class Character2D : MonoBehaviour
 				FaceLeft ();
 			}
 
-			if (jump && onGround) 
+			if (jump && onGround && currentSpeed > 0) 
 			{
 				jump = false;
 				rb.AddForce (Vector3.up * jumpForce);
@@ -107,7 +107,7 @@ public class Character2D : MonoBehaviour
     public void Update()
 	{
 
-		onGround = Physics.Raycast (groundCheck.position, Vector3.down, 0.5f,  groundLayer);
+		onGround = Physics.Raycast (groundCheck.position, Vector3.down, 0.15f,  groundLayer);
 		Debug.DrawRay(groundCheck.position, Vector3.down);
 
 		m_Anim.SetBool ("OnGround", onGround);

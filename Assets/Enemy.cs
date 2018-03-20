@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour {
 	private float zforce;
 	private float walkTimer;
 	private bool damaged = false;
+	private bool heavyDamaged = false;
 	private float damageTimer;
 	private float nextAttack;
 
@@ -45,13 +46,13 @@ public class Enemy : MonoBehaviour {
 		anim.SetBool ("Grounded", onGround);
 		anim.SetBool("Dead", isDead);
 
-
-		facingRight = (target.position.x < transform.position.x) ? false : true;
-		if (facingRight) 
-		{
-			transform.eulerAngles = new Vector3 (0, 0, 0);
-		} else {
-			transform.eulerAngles = new Vector3 (0, 180, 0);
+		if (!isDead && !damaged) {
+			facingRight = (target.position.x < transform.position.x) ? false : true;
+			if (facingRight) {
+				transform.eulerAngles = new Vector3 (0, 0, 0);
+			} else {
+				transform.eulerAngles = new Vector3 (0, 180, 0);
+			}
 		}
 
 		if (damaged && !isDead) 
@@ -86,7 +87,7 @@ public class Enemy : MonoBehaviour {
 				rb.velocity = new Vector3 (hForce * currentSpeed, rb.velocity.y, zforce * currentSpeed);
 			}
 
-			anim.SetFloat ("Speed", Mathf.Abs (currentSpeed));
+			anim.SetFloat ("Speed", Mathf.Abs (rb.velocity.magnitude));
 
 			rb.position = new Vector3 (
 				rb.position.x,
@@ -117,6 +118,21 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	public void TookHeavyDamage(int damage)
+	{
+		if(!isDead)
+		{
+			heavyDamaged = true;
+			currentHealth -= damage;
+			anim.SetTrigger ("HeavyDamage");
+			if (currentHealth <= 0) 
+			{
+				isDead = true;
+				rb.AddRelativeForce (new Vector3 (3, 5, 0), ForceMode.Impulse);
+			}
+		}	
+	}
+
 	public void DisableEnemy()
 	{
 		gameObject.SetActive (false);
@@ -125,5 +141,11 @@ public class Enemy : MonoBehaviour {
 	void ResetSpeed()
 	{
 		currentSpeed = maxSpeed;
+	}
+
+	void ZeroSpeed()
+	{
+		currentSpeed = 0;
+
 	}
 }

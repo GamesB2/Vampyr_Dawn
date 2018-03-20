@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
 
 	public int damage;
+	public bool heavy = false;
 
     public void Awake()
     {
@@ -20,8 +21,13 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter (Collider other)
     {
 		Enemy enemy = other.GetComponent<Enemy> ();
-		if (enemy != null) {
-			enemy.TookDamage (damage);
+		if (enemy != null) 
+		{
+			if (heavy) {
+				enemy.TookHeavyDamage (damage);
+			} else {
+				enemy.TookDamage (damage);
+			}
 			Debug.Log ("Hit");
 		}
     }
