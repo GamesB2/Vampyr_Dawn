@@ -66,11 +66,11 @@ public class Character2D : MonoBehaviour
 				m_Anim.SetFloat ("Speed", Mathf.Abs (rb.velocity.magnitude));
 			}
 
-			if (moveHorizontal < 0 && !facingRight) 
+			if (moveHorizontal < 0 && !facingRight && currentSpeed > 0) 
 			{
 				FaceRight ();
 			} 
-			else if (moveHorizontal > 0 && facingRight) 
+			else if (moveHorizontal > 0 && facingRight && currentSpeed > 0) 
 			{
 				FaceLeft ();
 			}
