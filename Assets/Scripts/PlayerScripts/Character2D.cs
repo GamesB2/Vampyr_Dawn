@@ -5,223 +5,144 @@ using UnityEngine;
 [RequireComponent(typeof(InputManager))]
 public class Character2D : MonoBehaviour
 {
-    private InputManager m_InputManager;
-
-    public float         m_WalkSpeed = 2;
 
     public Animator      m_Anim;                                                    
-	public bool          m_FacingRight = false;
-    private bool         m_Attacking = false;
-    private bool         m_recoil = false;
+
     private enum States { standing, crouching, grabbing, attacking };
 
-    private AttackTrigger attacktrigger;
+	public float maxSpeed = 2;
+	public float jumpForce = 4;
 
-    bool feeding;
-    int feedingTime;
-    GameObject feedingenemy;
+	public float currentSpeed;
+	private Rigidbody rb;
+	private Transform groundCheck;
+	private float hitDistance;
+	public bool onGround = false;
+	public bool facingRight = true;
+	private bool jump = false;
+	private bool isDead = false;
+	public float minHeight, maxHeight;
+	public LayerMask groundLayer;
+	public bool damaged;
+	public float damagetime = 1.0f;
 
-    private States m_currentState = States.standing;
-    // More states to come
 
-    public int health;
 
-    List<GameObject> currentCollisions = new List<GameObject>();
-
-    public GameObject m_BoundingBox;
-
-	public GameObject Assure;
-
-	//bounding box stuff
-	public float boundingBoxXMin = 0;
-	public float boundingBoxXMax = 0;
-	public float boundingBoxYMin = 0;
-	public float boundingBoxYMax = 0;
+	private float damageTimer;
+	public int maxHealth;
+    int currentHealth;
     
+	void Start()
+	{
+		rb = GetComponent<Rigidbody> ();
+		m_Anim = GetComponent<Animator>();
+		groundCheck = gameObject.transform.Find ("GroundCheck");
+		currentSpeed = maxSpeed;
+		currentHealth = maxHealth;
+	}
+
     private void Awake()
     {
-        m_Anim         = GetComponent<Animator>();
-        m_InputManager = GetComponent<InputManager>();
-        attacktrigger =  GetComponentInChildren<AttackTrigger>();
-		m_FacingRight = false;
-
-		m_BoundingBox = GameObject.FindGameObjectWithTag ("BoundingBox");
-		BoxCollider2D collider = m_BoundingBox.GetComponent<BoxCollider2D> ();
-		boundingBoxXMin = m_BoundingBox.transform.position.x - (collider.size.x / 2);
-		boundingBoxXMax = m_BoundingBox.transform.position.x + (collider.size.x / 2);
-		boundingBoxYMin = m_BoundingBox.transform.position.y - (collider.size.y / 2);
-		boundingBoxYMax = m_BoundingBox.transform.position.y + (collider.size.y / 2);
-
-        feedingTime = 0;
-        feeding = false;
+		facingRight = false;
     }
 
     private void FixedUpdate()
     {
+		if (!isDead) {
+
+			float moveHorizontal = Input.GetAxis ("Horizontal");
+			float moveVertical = Input.GetAxis ("Vertical");
+
+			if (!onGround) {
+				moveVertical = 0;
+			}
+				
+			if (!damaged) {
+				rb.velocity = new Vector3 (moveHorizontal * currentSpeed, rb.velocity.y, moveVertical * currentSpeed);
+			}
+
+			if (onGround) 
+			{
+				m_Anim.SetFloat ("Speed", Mathf.Abs (rb.velocity.magnitude));
+			}
+
+			if (moveHorizontal < 0 && !facingRight && currentSpeed > 0) 
+			{
+				FaceRight ();
+			} 
+			else if (moveHorizontal > 0 && facingRight && currentSpeed > 0) 
+			{
+				FaceLeft ();
+			}
+
+			if (jump && onGround && currentSpeed > 0) 
+			{
+				jump = false;
+				rb.AddForce (Vector3.up * jumpForce);
+			}
+
+			float minWidth = Camera.main.ScreenToWorldPoint (new Vector3 (0, 0, 10)).x;
+			float maxWidth = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width, 0, 10)).x;
+			rb.position = new Vector3(Mathf.Clamp(rb.position.x, minWidth+1, maxWidth -1),
+				rb.position.y,
+				Mathf.Clamp(rb.position.z, minHeight +1, maxHeight -1));
+		}
     }
+
+
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        currentCollisions.Add(col.gameObject);
+        //currentCollisions.Add(col.gameObject);
         Debug.Log("enter");
     }
 
     public void OnTriggerExit2D(Collider2D col)
     {
-        currentCollisions.Remove(col.gameObject);
+        //currentCollisions.Remove(col.gameObject);
         Debug.Log("Exit");
     }
 
-    void Feeding()
-    {
-        if (feedingTime != 4)
-        {
-            GetComponent<PlayerHealthScript>().AddHealth(5);
-            Invoke("Feeding", 0.5f);
-            feedingTime++;
-        }
-        else
-        {
-            feedingTime = 0;
-            feeding = false;
-            m_Anim.SetBool("Crouching", false);
-        }
-    }
 
     public void Update()
-    {
-        if (GetComponent<PlayerHealthScript>().isDead) return;
+	{
 
-        if (feeding) return;
+		onGround = Physics.Raycast (groundCheck.position, Vector3.down, 0.15f,  groundLayer);
+		Debug.DrawRay(groundCheck.position, Vector3.down);
 
-        m_Anim.SetBool("Moving", false);
+		m_Anim.SetBool ("OnGround", onGround);
+		m_Anim.SetBool ("Dead", isDead);
 
-        bool m_Button1 = m_InputManager.m_Button1;
-        bool m_Button2 = m_InputManager.m_Button2;
-        bool m_Button3 = m_InputManager.m_Button3;
-        bool m_Button4 = m_InputManager.m_Button4;
-
-        bool moving = (m_InputManager.m_DirectionHorizontal != 0 || m_InputManager.m_DirectionVertical != 0);
-
-        m_Anim.SetBool("Moving", moving);
-
-        if (!m_Attacking)
-        {
-            if (m_Button1)
-            {
-                m_Anim.SetTrigger("Button1Press");
-                Invoke("FinishAnim", 0.9f);
-                m_Attacking = true;
-                AttackButton1Pressed();
-                
-            }
-            if (m_Button2)
-            {
-                m_Anim.SetTrigger("Button2Press");
-                Invoke("FinishAnim", 0.75f);
-                m_Attacking = true;
-                AttackButton2Pressed();
-            }
-            if (m_Button3)
-            {
-                m_Anim.SetBool("Moving", false);
-                m_Anim.SetBool("Crouching", true);
-                moving = false;
-
-                foreach (GameObject g in currentCollisions)
-                {
-                    if (g.tag == "EnemyAi")
-                    {
-                        if (g.GetComponent<Health>().isDead)
-                        {
-                            feeding = true;
-                            Feeding();
-                            break;
-                        }
-                    }
-                }
-            }
-            if (!m_Button3)
-            {
-                m_Anim.SetBool("Crouching", false);
-            }
-                if (m_Button4)
-            {
-                //m_Anim.SetBool("Grabbing", true);
-                //moving = false;
-
-                GetComponent<PlayerHealthScript>().TakeDamage(1);
-            }
-            if (!m_Button4)
-            {
-                m_Anim.SetBool("Grabbing", false);
-            }
-        }
-
-
-        if (moving && !m_Attacking)
-        {
-            Move();
-        }
-
-		//check if player walks off scene
-		if (transform.position.x < boundingBoxXMin || transform.position.x > boundingBoxXMax) 
+		if (Input.GetButtonDown ("Jump") && onGround) 
 		{
-			Assure.SetActive (true);
+			jump = true;
 		}
 
-    }
-		
+		if (Input.GetButtonDown ("Fire1")) 
+		{
+			m_Anim.SetTrigger ("Attack");
+		}
 
-    public void FinishAnim()
-    {
-        m_Attacking = false;
-    }
+		if (damaged && !isDead) 
+		{
+			damageTimer += Time.deltaTime;
+			if (damageTimer > damagetime) 
+			{
+				damaged = false;
+				damageTimer = 0;
+			}
+		}
+	}
 
     public void FinishDamageAnim()
     {
-        m_recoil = false;
         m_Anim.SetBool("Damage", false);
     }
-
-    public void Move()
-    {
-            if (m_InputManager.m_DirectionHorizontal < 0)
-            {
-                FaceRight();
-            }
-            else
-            {
-                FaceLeft();              
-            }
-
-
-
-        //Do the actual movement.
-        Vector3 moveby = Vector3.zero;
-        moveby.x = m_InputManager.m_DirectionHorizontal;
-        moveby.y = m_InputManager.m_DirectionVertical;
-        moveby.z = 0;
-
-		if (transform.position.y >= boundingBoxYMax) { //player has gone above the bounding box;
-			if (moveby.y > 0) //player tryna move up
-				moveby = new Vector3(moveby.x, moveby.y *-1, moveby.x);
-		} else if (transform.position.y <= boundingBoxYMin) { //player has gone below the bounding box;
-			if (moveby.y < 0) //player tryna move down
-				moveby = new Vector3(moveby.x, moveby.y *-1, moveby.x);
-		}
-
-        Vector3.Normalize(moveby);
-        moveby *= m_WalkSpeed * Time.deltaTime;
-
-        transform.position += moveby;
-    }
-
 
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
-        m_FacingRight = !m_FacingRight;
+		facingRight = !facingRight;
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
@@ -235,7 +156,6 @@ public class Character2D : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y , transform.position.z);
             Flip();
-            m_FacingRight = true;
         }
 
     }
@@ -246,17 +166,31 @@ public class Character2D : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
             Flip();
-            m_FacingRight = false;
         }
     }
+	
+	void ZeroSpeed()
+	{
+		currentSpeed = 0;
+	}
 
-    public void AttackButton1Pressed()
-    {
-        attacktrigger.Attack(20);
-    }
+	void ResetSpeed()
+	{
+		currentSpeed = maxSpeed;
+	}
 
-    public void AttackButton2Pressed()
-    {
-        attacktrigger.Attack(20);
-    }
+	public void TookDamage(int damage)
+	{
+		if(!isDead)
+		{
+			damaged = true;
+			currentHealth -= damage;
+			m_Anim.SetTrigger ("HitDamage");
+			if (currentHealth <= 0) 
+			{
+				isDead = true;
+				rb.AddRelativeForce (new Vector3 (3, 5, 0), ForceMode.Impulse);
+			}
+		}
+	}
 }

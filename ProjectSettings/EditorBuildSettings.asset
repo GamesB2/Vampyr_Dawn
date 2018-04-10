@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ComicScene.unity
     guid: 9b68d10458b667b4d8193f09fea09083
+  - enabled: 1
+    path: Assets/JimmyfightTestScene.unity
+    guid: 3a129a566c26af04abe0a52df88e4249
