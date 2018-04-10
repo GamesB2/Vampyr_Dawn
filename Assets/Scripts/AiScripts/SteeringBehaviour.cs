@@ -69,7 +69,7 @@ namespace SteeringBehaviours
         }
 
         // Predictive steering
-		/* None of these have actually bee correctly implemented as it wasn't needed for the prototype.
+        /* None of these have actually bee correctly implemented as it wasn't needed for the prototype.
 		 * If you do need to implement these refer to the Mat Buckland examples
 		*/
         public static Vector3 Pursuit(Vector3 target, Vector3 me, float speed)
