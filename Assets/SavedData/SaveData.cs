@@ -39,6 +39,9 @@ public class SaveData {
 	public float[] m_BossChances = new float[5];
 	public Location m_Location;
 	public Location m_RegionLocation;
+	public float m_playerBrightness;
+	public float m_playerVolume;
+	public bool m_playerVolumeMute; 
 
 	public SaveData() {
 		m_CharacterName = "Momo";
@@ -50,6 +53,9 @@ public class SaveData {
 		m_Location.map_x = 0; m_Location.map_y = 0;
 		m_RegionLocation = new Location ();
 		m_RegionLocation.map_x = 0; m_RegionLocation.map_y = 0;
+		m_playerBrightness = 0.5f;
+		m_playerVolume = 0.5f;
+		m_playerVolumeMute = false;
 	}
 
 	public void IncreaseFightsCompleted() {

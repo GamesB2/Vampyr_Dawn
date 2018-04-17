@@ -152,7 +152,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: 0.79
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -180,7 +180,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: 0.23
+        value: 0.4
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -203,6 +203,12 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.083333336
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -281,6 +287,13 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 201734376
+      attribute: 337658885
+      script: {fileID: 0}
+      typeID: 65
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
       path: 0
       attribute: 0
       script: {fileID: 0}
@@ -290,13 +303,6 @@ AnimationClip:
     - serializedVersion: 2
       path: 201734376
       attribute: 3390229881
-      script: {fileID: 0}
-      typeID: 65
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 201734376
-      attribute: 337658885
       script: {fileID: 0}
       typeID: 65
       customType: 0
@@ -443,7 +449,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: 0.79
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -471,7 +477,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: 0.23
+        value: 0.4
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -494,6 +500,12 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 0.083333336
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -580,4 +592,18 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: ZeroSpeed
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: ResetSpeed
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

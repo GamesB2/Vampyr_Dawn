@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4737324404513290}
   - component: {fileID: 212602322521260734}
   - component: {fileID: 95540470124845088}
-  - component: {fileID: 114559026436346444}
   - component: {fileID: 114043367284219134}
   - component: {fileID: 54317059973218210}
   - component: {fileID: 136965972429201302}
@@ -65,23 +64,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1918920690235938
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4588152905147494}
-  - component: {fileID: 114763357543112340}
-  - component: {fileID: 65934779800725038}
-  m_Layer: 11
-  m_Name: AttackTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &4164411168387256
 Transform:
   m_ObjectHideFlags: 1
@@ -93,7 +75,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4737324404513290}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4380795963297130
 Transform:
@@ -104,19 +86,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.018, y: 0.078, z: 0.155}
   m_LocalScale: {x: 1.25, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4737324404513290}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4588152905147494
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1918920690235938}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.3746824, y: 0.688, z: -2.386}
-  m_LocalScale: {x: 0.625, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4737324404513290}
   m_RootOrder: 0
@@ -131,7 +100,6 @@ Transform:
   m_LocalPosition: {x: -6.7349324, y: -1, z: 2.356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4588152905147494}
   - {fileID: 4380795963297130}
   - {fileID: 4164411168387256}
   m_Father: {fileID: 0}
@@ -163,18 +131,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.4, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65934779800725038
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1918920690235938}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95540470124845088
 Animator:
@@ -225,23 +181,7 @@ MonoBehaviour:
   damagetime: 0.5
   maxHealth: 100
   attackRate: 1
-  enemyName: 
---- !u!114 &114559026436346444
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057296219345744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a599cdfdab0a8bb41918cca3b8943f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HealthPoints: 100
-  m_MaxHealth: 100
-  anim: {fileID: 95540470124845088}
-  isDead: 0
-  healthBar: {fileID: 0}
+  enemyName: Grunt
 --- !u!114 &114588218214192332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,19 +194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
---- !u!114 &114763357543112340
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1918920690235938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd14348e08170b46ab58ecf558574a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  heavy: 0
 --- !u!136 &136965972429201302
 CapsuleCollider:
   m_ObjectHideFlags: 1

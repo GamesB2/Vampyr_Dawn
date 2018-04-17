@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 
-		if (damaged && !isDead) 
+		if (damaged) 
 		{
 			damageTimer += Time.deltaTime;
 			FindObjectOfType<UIManager> ().UpdateEnemyUI (maxHealth, currentHealth, enemyName);
@@ -114,6 +114,7 @@ public class Enemy : MonoBehaviour {
 			anim.SetTrigger ("Damage");
 			if (currentHealth <= 0) 
 			{
+				currentHealth = 0;
 				isDead = true;
 				rb.AddRelativeForce (new Vector3 (3, 5, 0), ForceMode.Impulse);
 			}
