@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour {
 	{
 		enemySlider.maxValue = maxHealth;
 		enemySlider.value = currentHealth;
-		enemyName.text;
+		enemyName.text = name;
 		enemyTimer = 0;
 
 		enemyUI.SetActive (true);
