@@ -10,14 +10,24 @@ public class GameManager : MonoBehaviour
     private static GameObject m_PlayerReference = null;
 	private static List<GameObject> m_EnemyAiList = null;
 
-	public Color darkest, brightest;
-	public Slider slider;
-
-
+	Color darkest = Color.black, brightest = Color.white;
+	public Slider brightnessSlider;
+	public Slider audioSlider;
+	public AudioSource mainAudio;
+	public Toggle muteToggle;
+	int toggleValue;
 
     public void Awake()
     {
-		
+		brightnessSlider.value = PlayerPrefs.GetFloat ("brightnessValue");
+		audioSlider.value = PlayerPrefs.GetFloat ("audioValue");
+		toggleValue = PlayerPrefs.GetInt ("toggleValue");
+
+		if (toggleValue == 1)
+			muteToggle.isOn = true;
+		else
+			muteToggle.isOn = false;
+
         m_PlayerReference = GameObject.Find("Player");
 		m_EnemyAiList = new List<GameObject> ();
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("EnemyAi");
@@ -102,13 +112,9 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	public void LoadMainMenu()
+	public void LoadLevel(int level)
 	{
-		SceneManager.LoadScene (0);
-	}
-	public void LoadMapScene()
-	{
-		SceneManager.LoadScene(2);
+		SceneManager.LoadScene (level);
 	}
 
 	public void LeaveActionScene() 
@@ -120,11 +126,6 @@ public class GameManager : MonoBehaviour
 	{
 		Application.Quit();
 	}
-	public void BrightnessSettings()
-	{
-		RenderSettings.ambientLight = Color.Lerp(darkest, brightest, slider.value);
-	}
-
 
 	void Update()
 	{
@@ -144,5 +145,19 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
+
+		RenderSettings.ambientLight = Color.Lerp(darkest, brightest, brightnessSlider.value);
+		PlayerPrefs.SetFloat ("brightnessValue", brightnessSlider.value);
+		AudioListener.volume = audioSlider.value;
+		PlayerPrefs.SetFloat ("audioValue", audioSlider.value);
+
+		if (muteToggle.isOn == true) {
+			toggleValue = 1;
+			AudioListener.volume = 0;
+		} else {
+			toggleValue = 0;
+			AudioListener.volume = audioSlider.value;
+		}
+		PlayerPrefs.SetInt ("toggleValue", toggleValue);
 	}
 }
