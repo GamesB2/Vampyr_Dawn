@@ -27,10 +27,9 @@ public class Character2D : MonoBehaviour
 	public float damagetime = 1.0f;
 
 
-
 	private float damageTimer;
 	public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
     
 	void Start()
 	{
@@ -185,6 +184,7 @@ public class Character2D : MonoBehaviour
 		{
 			damaged = true;
 			currentHealth -= damage;
+			FindObjectOfType<UIManager> ().UpdateHealth (currentHealth);
 			m_Anim.SetTrigger ("HitDamage");
 			if (currentHealth <= 0) 
 			{

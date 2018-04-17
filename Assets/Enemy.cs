@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
 	public float damagetime = 0.5f;
 	public int maxHealth = 100;
 	public float attackRate = 1f;
+	public string enemyName;
 
 	private int currentHealth;
 	private float currentSpeed;
@@ -58,6 +59,7 @@ public class Enemy : MonoBehaviour {
 		if (damaged && !isDead) 
 		{
 			damageTimer += Time.deltaTime;
+			FindObjectOfType<UIManager> ().UpdateEnemyUI (maxHealth, currentHealth, enemyName);
 			if (damageTimer > -damagetime) 
 			{
 				damaged = false;
